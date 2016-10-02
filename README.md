@@ -1,4 +1,4 @@
-# iRedmail Dockerfile на базе последней версии CentOS 7
+# Почтовый сервер iRedmail на базе CentOS 7
 
 ##Генерация
 
