@@ -6,9 +6,9 @@
 docker build -t vlavd/iredmail:latest .
 ```
 
-##Создание
+##Создание:
 
-- Отредактировать файл ``iredmail.cfg``:
+- отредактировать файл ``iredmail.cfg``:
 ```
 #iRedMail version
 IREDMAIL_VERSION="0.9.5-1"
