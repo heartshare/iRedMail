@@ -8,7 +8,7 @@ docker build -t vlavd/iredmail:latest .
 
 ##Создание
 
-Прежде чем создавать контейнер нужно отредактировать файл iredmail.cfg:
+Прежде чем создавать контейнер нужно отредактировать файл ``iredmail.cfg``:
 ```
 #iRedMail version
 IREDMAIL_VERSION="0.9.5-1"
