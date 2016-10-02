@@ -1,12 +1,23 @@
 # iRedmail Dockerfile на базе последней версии CentOS 7
 
-##Генерация:
+##Генерация
 
 ```
 docker build -t vlavd/iredmail:latest .
 ```
 
-##Создание:
+##Создание
+
+Прежде чем создавать контейнер нужно отредактировать файл iredmail.cfg:
+```
+#iRedMail version
+IREDMAIL_VERSION="0.9.5-1"
+#Your settings, change this:
+DOMAIN="home.net"
+PASSWD="5la.Ber1n"
+```
+
+Контейнер создается командой:
 
 ```
 docker create --privileged -it --restart=always \
@@ -23,13 +34,13 @@ docker create --privileged -it --restart=always \
               vlavad/iredmail
 ```
 
-##Запуск:
+##Запуск
 
 ```
 docker start ИМЯ_КОНТЕЙНЕРА
 ```
 
-##Вход в контейнер:
+##Вход в контейнер
 
 ````
 docker exec -it ИМЯ_КОНТЕЙНЕРА bash
