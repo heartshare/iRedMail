@@ -17,7 +17,7 @@ Docker-контейнер с почтовым сервером iRedmail на б�
 
   - создать командой::
 
-    docker create --privileged -it --restart=always \
+      docker create --privileged -it --restart=always \
               -p 80:80 \
               -p 443:443 \
               -p 25:25 \
