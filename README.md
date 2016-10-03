@@ -14,7 +14,7 @@ docker build -t vlavd/iredmail:latest .
 IREDMAIL_VERSION="0.9.5-1"
 #Your settings, change this:
 DOMAIN="home.net"
-PASSWD="5la.Ber1n"
+PASSWD="iRedMail"
 ```
 
 - создать командой:
