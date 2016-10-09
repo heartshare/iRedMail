@@ -61,9 +61,9 @@ RUN ln -s /etc/systemd/system/iredmail-install.service /etc/systemd/system/multi
 
 # Set volume for systemd
 VOLUME [ "/sys/fs/cgroup" ]
-VOLUME [ "/etc/dovecot" ]
-VOLUME [ "/etc/postfix" ]
-VOLUME [ "/var/vmail" ]
+#VOLUME [ "/etc/dovecot" ]
+#VOLUME [ "/etc/postfix" ]
+#VOLUME [ "/var/vmail" ]
 
 # Open Ports:
 # Apache: 80/tcp, 443/tcp Postfix: 25/tcp, 587/tcp
