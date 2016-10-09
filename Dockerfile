@@ -55,6 +55,8 @@ RUN mkdir -p /opt/iredmail; \
     rm iRedMail-$IREDMAIL_VERSION.tar.bz2
 
 ## Install systemd
+# Базовым является контейнер CentOS с работающей systemd
+# поэтому следующие строки не нужны
 #RUN yum -y reinstall systemd; yum clean all; \ 
 #     (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
 #     rm -f /lib/systemd/system/multi-user.target.wants/*;\
