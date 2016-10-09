@@ -6,7 +6,20 @@
 # docker build -t vlavd/iredmail:latest .
 #
 # Create:
-# docker create --privileged -it --restart=always -p 80:80 -p 443:443 -p 25:25 -p 587:587 -p 110:110 -p 143:143 -p 993:993 -p 995:995 -h your_domain.com --name container_name vlavad/iredmail
+# docker create --privileged \
+#               -it \
+#               --restart=always \
+#               -p 80:80 \
+#               -p 443:443 \
+#               -p 25:25 \
+#               -p 587:587 \
+#               -p 110:110 \
+#               -p 143:143 \
+#               -p 993:993 \
+#               -p 995:995 \
+#               -h your_domain.com \
+#               --name container_name \
+#               vlavad/iredmail
 #
 # Start:
 # docker start container_name
@@ -16,6 +29,8 @@
 
 
 # Pull base image
+# Базовым является контейнер CentOS с работающей systemd
+# 
 FROM vlavad/systemd-base
 
 # Maintener
@@ -61,6 +76,7 @@ RUN ln -s /etc/systemd/system/iredmail-install.service /etc/systemd/system/multi
 
 # Set volume for systemd
 VOLUME [ "/sys/fs/cgroup" ]
+# после раскоментирования следующих строк не запускаются сервисы, не хватает прав
 #VOLUME [ "/etc/dovecot" ]
 #VOLUME [ "/etc/postfix" ]
 #VOLUME [ "/var/vmail" ]
