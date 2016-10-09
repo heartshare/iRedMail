@@ -16,7 +16,7 @@
 
 
 # Pull base image
-FROM centos
+FROM vlavad/systemd-base
 
 # Maintener
 MAINTAINER VlaVad <vlavad@gmail.com>
@@ -39,16 +39,16 @@ RUN mkdir -p /opt/iredmail; \
     tar xjf iRedMail-$IREDMAIL_VERSION.tar.bz2; \
     rm iRedMail-$IREDMAIL_VERSION.tar.bz2
 
-# Install systemd
-RUN yum -y reinstall systemd; yum clean all; \ 
-     (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
-     rm -f /lib/systemd/system/multi-user.target.wants/*;\
-     rm -f /etc/systemd/system/*.wants/*;\
-     rm -f /lib/systemd/system/local-fs.target.wants/*; \
-     rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-     rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-     rm -f /lib/systemd/system/basic.target.wants/*;\
-     rm -f /lib/systemd/system/anaconda.target.wants/*;
+## Install systemd
+#RUN yum -y reinstall systemd; yum clean all; \ 
+#     (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+#     rm -f /lib/systemd/system/multi-user.target.wants/*;\
+#     rm -f /etc/systemd/system/*.wants/*;\
+#     rm -f /lib/systemd/system/local-fs.target.wants/*; \
+#     rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+#     rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+#     rm -f /lib/systemd/system/basic.target.wants/*;\
+#     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # Copy script and config files
 ADD iredmail/config.iredmail /opt/iredmail/
