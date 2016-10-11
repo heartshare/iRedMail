@@ -67,6 +67,9 @@ RUN mkdir -p /opt/iredmail; \
 #     rm -f /lib/systemd/system/basic.target.wants/*;\
 #     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
+# Клонирование из git
+RUN git clone https://github.com/vlavad/iRedMail.git /opt/iRedMail
+
 # Copy script and config files
 ADD iredmail/config.iredmail /opt/iredmail/
 ADD iredmail/iredmail.sh /opt/iredmail/iredmail.sh
