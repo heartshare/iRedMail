@@ -1,6 +1,9 @@
 #!/bin/bash
 
-. /opt/iredmail/iredmail.cfg
+# Задавать с помощью
+# -e PASSWD
+# -e DOMAIN
+# . /opt/iredmail/iredmail.cfg
 
 ## files
 CONFIG_FILE_TMP=/opt/iredmail/config.iredmail
