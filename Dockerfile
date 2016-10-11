@@ -45,6 +45,7 @@ RUN yum update -y; \
     yum install -y tar bzip2 hostname rsyslog wget mc lynx net-tools postfix maria mariadb-server php-common php-gd php-xml php-mysql php-imap php-mbstring php-pecl-apc php-intl php-mcrypt nginx php-fpm cluebringer dovecot dovecot-pigeonhole dovecot-mysql clamav clamav-update clamav-server clamav-server-systemd amavisd-new spamassassin altermime perl-Mail-SPF unrar; \
     yum clean all; \
     yum clean metadata; \
+    rm -rf /var/cache/yum/x86_64/7; \
     git clone https://github.com/vlavad/iRedMail.git /opt/iredmail; \
     cd /opt/iredmail; \
     cp iredmail-install.service /etc/systemd/system/iredmail-install.service; \ 
