@@ -4,7 +4,7 @@
 
 ## files
 CONFIG_FILE_TMP=/opt/iredmail/config.iredmail
-CONFIG_FILE_IRE=/opt/iredmail/iRedMail-$IREDMAIL_VERSION/config
+CONFIG_FILE_IRE=/opt/iredmail/iRedMail.Last/config
 PASSWD_GENERATOR=$(openssl rand -base64 16)
 LOGFILE=/opt/iredmail/iredmail-install.log
 
@@ -53,7 +53,7 @@ install_iredmail() {
     AUTO_CLEANUP_RESTART_IPTABLES=y \
     AUTO_CLEANUP_REPLACE_MYSQL_CONFIG=y \
     AUTO_CLEANUP_RESTART_POSTFIX=n \
-    bash /opt/iredmail/iRedMail-$IREDMAIL_VERSION/iRedMail.sh >> $LOGFILE
+    bash /opt/iredmail/iRedMail.Last/iRedMail.sh >> $LOGFILE
 
 }
 
@@ -61,7 +61,7 @@ install_iredmail() {
 iredmail() {
 
     #check config file
-    if [ ! -f /opt/iredmail/iRedMail-$IREDMAIL_VERSION/config ]; then
+    if [ ! -f /opt/iredmail/iRedMail.Last/config ]; then
         replace_iredmail
         install_iredmail
         # enable services

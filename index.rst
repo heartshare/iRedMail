@@ -12,9 +12,7 @@ Docker-контейнер с почтовым сервером iRedmail на б�
 
 - отредактировать файл ``iredmail.cfg``::
 
-      #iRedMail version
-      IREDMAIL_VERSION="0.9.5-1"
-      #Your settings, change this:
+      # Ваши настройки:
       DOMAIN="home.net"
       PASSWD="iRedMail"
 
