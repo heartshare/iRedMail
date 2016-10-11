@@ -46,13 +46,21 @@ RUN yum update -y; yum install -y tar bzip2 hostname rsyslog wget
 # Install packages neccesary to install iredmail server
 RUN yum install -y postfix openldap openldap-clients openldap-servers maria mariadb-server mod_ldap php-common php-gd php-xml php-mysql php-ldap php-pgsql php-imap php-mbstring php-pecl-apc php-intl php-mcrypt nginx php-fpm cluebringer dovecot dovecot-pigeonhole dovecot-mysql clamav clamav-update clamav-server clamav-server-systemd amavisd-new spamassassin altermime perl-LDAP perl-Mail-SPF unrar mc lynx net-tools
 
+# Клонирование из git
+RUN git clone https://github.com/vlavad/iRedMail.git /opt/iredmail
 
 # Get iredmail, extract and remove tar
-RUN mkdir -p /opt/iredmail; \
-    cd /opt/iredmail; \
+RUN cd /opt/iredmail; \
     wget -c https://bitbucket.org/zhb/iredmail/downloads/iRedMail-$IREDMAIL_VERSION.tar.bz2; \
     tar xjf iRedMail-$IREDMAIL_VERSION.tar.bz2; \
-    rm iRedMail-$IREDMAIL_VERSION.tar.bz2
+    rm iRedMail-$IREDMAIL_VERSION.tar.bz2; \
+    cp iredmail-install.service /etc/systemd/system/iredmail-install.service; \ 
+    chmod +x /opt/iredmail/iredmail.sh; \
+    ln -s /etc/systemd/system/iredmail-install.service /etc/systemd/system/multi-user.target.wants/iredmail-service.service
+
+#    cp iredmail/config.iredmail /opt/iredmail/
+#    cp iredmail/iredmail.sh /opt/iredmail/iredmail.sh
+#    cp iredmail.cfg /opt/iredmail/iredmail.cfg
 
 ## Install systemd
 # Базовым является контейнер CentOS с работающей systemd
@@ -67,17 +75,11 @@ RUN mkdir -p /opt/iredmail; \
 #     rm -f /lib/systemd/system/basic.target.wants/*;\
 #     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-# Клонирование из git
-RUN git clone https://github.com/vlavad/iRedMail.git /opt/iRedMail
-
 # Copy script and config files
-ADD iredmail/config.iredmail /opt/iredmail/
-ADD iredmail/iredmail.sh /opt/iredmail/iredmail.sh
-ADD iredmail.cfg /opt/iredmail/iredmail.cfg
-ADD iredmail/iredmail-install.service /etc/systemd/system/iredmail-install.service
-
-RUN chmod +x /opt/iredmail/iredmail.sh
-RUN ln -s /etc/systemd/system/iredmail-install.service /etc/systemd/system/multi-user.target.wants/iredmail-service.service
+#ADD iredmail/config.iredmail /opt/iredmail/
+#ADD iredmail/iredmail.sh /opt/iredmail/iredmail.sh
+#ADD iredmail.cfg /opt/iredmail/iredmail.cfg
+#ADD iredmail/iredmail-install.service /etc/systemd/system/iredmail-install.service
 
 # Set volume for systemd
 VOLUME [ "/sys/fs/cgroup" ]
