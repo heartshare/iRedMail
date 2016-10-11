@@ -1,0 +1,6 @@
+hosts       = 
+port        = 3306
+user        = vmail
+password    = s4lBBFTpnl5G+2Ia+ahKyw==
+dbname      = vmail
+query       = SELECT relayhost FROM sender_relayhost WHERE account='%s' LIMIT 1

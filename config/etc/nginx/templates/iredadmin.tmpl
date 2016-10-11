@@ -1,0 +1,28 @@
+# Settings for iRedAdmin.
+
+# static files under /iredadmin/static
+location ~ ^/iredadmin/static/(.*)\.(png|jpg|gif|css|js) {
+    alias /var/www/iredadmin/static/$1.$2;
+}
+
+# Python scripts
+location ~ ^/iredadmin(.*) {
+    rewrite ^/iredadmin(/.*)$ $1 break;
+
+    include uwsgi_params;
+    uwsgi_pass unix:/run/uwsgi/iredadmin.socket;
+    uwsgi_param UWSGI_CHDIR /var/www/iredadmin;
+    uwsgi_param UWSGI_SCRIPT iredadmin;
+    uwsgi_param SCRIPT_NAME /iredadmin;
+
+    # Access control
+    #allow 127.0.0.1;
+    #allow 192.168.1.10;
+    #allow 192.168.1.0/24;
+    #deny all;
+}
+
+# iRedAdmin: redirect /iredadmin to /iredadmin/
+location = /iredadmin {
+    rewrite ^ /iredadmin/;
+}
