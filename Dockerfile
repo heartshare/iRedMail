@@ -41,16 +41,13 @@ ENV IREDMAIL_VERSION 0.9.5-1
 ENV container docker
 
 # Install packages necessary:
-RUN yum update -y; yum install -y tar bzip2 hostname rsyslog wget
-
-# Install packages neccesary to install iredmail server
-RUN yum install -y postfix openldap openldap-clients openldap-servers maria mariadb-server mod_ldap php-common php-gd php-xml php-mysql php-ldap php-pgsql php-imap php-mbstring php-pecl-apc php-intl php-mcrypt nginx php-fpm cluebringer dovecot dovecot-pigeonhole dovecot-mysql clamav clamav-update clamav-server clamav-server-systemd amavisd-new spamassassin altermime perl-LDAP perl-Mail-SPF unrar mc lynx net-tools
-
-# Клонирование из git
-RUN git clone https://github.com/vlavad/iRedMail.git /opt/iredmail
-
-# Get iredmail, extract and remove tar
-RUN cd /opt/iredmail; \
+RUN yum update -y; \
+    yum install -y tar bzip2 hostname rsyslog wget; \
+    yum install -y postfix openldap openldap-clients openldap-servers maria mariadb-server mod_ldap php-common php-gd php-xml php-mysql php-ldap php-pgsql php-imap php-mbstring php-pecl-apc php-intl php-mcrypt nginx php-fpm cluebringer dovecot dovecot-pigeonhole dovecot-mysql clamav clamav-update clamav-server clamav-server-systemd amavisd-new spamassassin altermime perl-LDAP perl-Mail-SPF unrar mc lynx net-tools; \
+    yum clean all; \
+    yum clean metadata; \
+    git clone https://github.com/vlavad/iRedMail.git /opt/iredmail; \
+    cd /opt/iredmail; \
     wget -c https://bitbucket.org/zhb/iredmail/downloads/iRedMail-$IREDMAIL_VERSION.tar.bz2; \
     tar xjf iRedMail-$IREDMAIL_VERSION.tar.bz2; \
     rm iRedMail-$IREDMAIL_VERSION.tar.bz2; \
@@ -62,24 +59,6 @@ RUN cd /opt/iredmail; \
 #    cp iredmail/iredmail.sh /opt/iredmail/iredmail.sh
 #    cp iredmail.cfg /opt/iredmail/iredmail.cfg
 
-## Install systemd
-# Базовым является контейнер CentOS с работающей systemd
-# поэтому следующие строки не нужны
-#RUN yum -y reinstall systemd; yum clean all; \ 
-#     (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
-#     rm -f /lib/systemd/system/multi-user.target.wants/*;\
-#     rm -f /etc/systemd/system/*.wants/*;\
-#     rm -f /lib/systemd/system/local-fs.target.wants/*; \
-#     rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-#     rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-#     rm -f /lib/systemd/system/basic.target.wants/*;\
-#     rm -f /lib/systemd/system/anaconda.target.wants/*;
-
-# Copy script and config files
-#ADD iredmail/config.iredmail /opt/iredmail/
-#ADD iredmail/iredmail.sh /opt/iredmail/iredmail.sh
-#ADD iredmail.cfg /opt/iredmail/iredmail.cfg
-#ADD iredmail/iredmail-install.service /etc/systemd/system/iredmail-install.service
 
 # Set volume for systemd
 VOLUME [ "/sys/fs/cgroup" ]
