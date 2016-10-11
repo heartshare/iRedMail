@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. /opt/iredmail/iredmail.cfg
-
 ## files
 CONFIG_FILE_TMP=/opt/iredmail/config.iredmail
 CONFIG_FILE_IRE=/opt/iredmail/iRedMail.Last/config
@@ -62,6 +60,14 @@ iredmail() {
 
     #check config file
     if [ ! -f /opt/iredmail/iRedMail.Last/config ]; then
+
+        if [ ! -f /var/vmail/iredmail.cfg ]; then
+          . /opt/iredmail/iredmail.cfg
+        else
+          . /var/vmail/iredmail.cfg
+          rm -f /var/vmail/iredmail.cfg
+        fi
+
         replace_iredmail
         install_iredmail
         # enable services
