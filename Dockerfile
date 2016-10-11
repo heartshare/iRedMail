@@ -41,8 +41,8 @@ ENV IREDMAIL_VERSION 0.9.5-1
 ENV container docker
 
 # Install packages necessary:
-RUN yum update -y; \
-    yum install -y tar bzip2 hostname rsyslog wget mc lynx net-tools postfix maria mariadb-server php-common php-gd php-xml php-mysql php-imap php-mbstring php-pecl-apc php-intl php-mcrypt nginx php-fpm cluebringer dovecot dovecot-pigeonhole dovecot-mysql clamav clamav-update clamav-server clamav-server-systemd amavisd-new spamassassin altermime perl-Mail-SPF unrar; \
+RUN yum update  -y --disablerepo=rpmforge,ius,remi; \
+    yum install -y --disablerepo=rpmforge,ius,remi tar bzip2 hostname rsyslog wget mc lynx net-tools postfix maria mariadb-server php-common php-gd php-xml php-mysql php-imap php-mbstring php-pecl-apc php-intl php-mcrypt nginx php-fpm cluebringer dovecot dovecot-pigeonhole dovecot-mysql clamav clamav-update clamav-server clamav-server-systemd amavisd-new spamassassin altermime perl-Mail-SPF unrar; \
     yum clean all; \
     yum clean metadata; \
     rm -rf /var/cache/yum/x86_64/7; \
