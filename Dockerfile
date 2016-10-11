@@ -47,13 +47,13 @@ RUN yum update -y; \
     yum clean metadata; \
     git clone https://github.com/vlavad/iRedMail.git /opt/iredmail; \
     cd /opt/iredmail; \
-    wget -c https://bitbucket.org/zhb/iredmail/downloads/iRedMail-$IREDMAIL_VERSION.tar.bz2; \
-    tar xjf iRedMail-$IREDMAIL_VERSION.tar.bz2; \
-    rm iRedMail-$IREDMAIL_VERSION.tar.bz2; \
     cp iredmail-install.service /etc/systemd/system/iredmail-install.service; \ 
     chmod +x /opt/iredmail/iredmail.sh; \
     ln -s /etc/systemd/system/iredmail-install.service /etc/systemd/system/multi-user.target.wants/iredmail-service.service
 
+#    wget -c https://bitbucket.org/zhb/iredmail/downloads/iRedMail-$IREDMAIL_VERSION.tar.bz2; \
+#    tar xjf iRedMail-$IREDMAIL_VERSION.tar.bz2; \
+#    rm iRedMail-$IREDMAIL_VERSION.tar.bz2; \
 #    cp iredmail/config.iredmail /opt/iredmail/
 #    cp iredmail/iredmail.sh /opt/iredmail/iredmail.sh
 #    cp iredmail.cfg /opt/iredmail/iredmail.cfg
