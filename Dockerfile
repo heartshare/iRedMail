@@ -42,8 +42,7 @@ ENV container docker
 
 # Install packages necessary:
 RUN yum update -y; \
-    yum install -y tar bzip2 hostname rsyslog wget; \
-    yum install -y postfix openldap openldap-clients openldap-servers maria mariadb-server mod_ldap php-common php-gd php-xml php-mysql php-ldap php-pgsql php-imap php-mbstring php-pecl-apc php-intl php-mcrypt nginx php-fpm cluebringer dovecot dovecot-pigeonhole dovecot-mysql clamav clamav-update clamav-server clamav-server-systemd amavisd-new spamassassin altermime perl-LDAP perl-Mail-SPF unrar mc lynx net-tools; \
+    yum install -y tar bzip2 hostname rsyslog wget mc lynx net-tools postfix maria mariadb-server php-common php-gd php-xml php-mysql php-imap php-mbstring php-pecl-apc php-intl php-mcrypt nginx php-fpm cluebringer dovecot dovecot-pigeonhole dovecot-mysql clamav clamav-update clamav-server clamav-server-systemd amavisd-new spamassassin altermime perl-Mail-SPF unrar; \
     yum clean all; \
     yum clean metadata; \
     git clone https://github.com/vlavad/iRedMail.git /opt/iredmail; \
