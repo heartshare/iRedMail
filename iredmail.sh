@@ -99,6 +99,9 @@ iredmail() {
         # remove iredmail install script
         /usr/bin/systemctl disable iredmail-install.service
         /usr/bin/systemctl stop iredmail-install.service
+
+        rm -f /opt/iredmail/iRedMail.Last/config
+        touch /opt/iredmail/iRedMail.Last/config
     fi
 
 }
