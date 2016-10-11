@@ -98,4 +98,3 @@ iredmail() {
 }
 # Install iRedmail
 iredmail
-
