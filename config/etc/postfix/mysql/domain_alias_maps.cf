@@ -1,6 +1,0 @@
-hosts       = 
-port        = 3306
-user        = vmail
-password    = s4lBBFTpnl5G+2Ia+ahKyw==
-dbname      = vmail
-query       = SELECT alias.goto FROM alias,alias_domain,domain WHERE alias_domain.alias_domain='%d' AND alias.address=CONCAT('%u', '@', alias_domain.target_domain) AND alias_domain.target_domain=domain.domain AND alias.active=1 AND alias_domain.active=1 AND domain.backupmx=0
